@@ -8,6 +8,7 @@ ifdef::env-github[]
 endif::[]
 :toc:
 :toc-placement: preamble
+:toclevels: 1
 // URI's
 :uri-homebrew: https://brew.sh
 :uri-mantoso-role-homebrew: https://github.com/mantoso/mantoso-role-homebrew
@@ -30,19 +31,21 @@ Install {uri-homebrew}[Homebrew] via the CLI
 
 == Ansible
 
-Install Ansible
+=== Install Ansible
 
 ----
 sudo easy_install pip
 sudo pip install ansible
 ----
 
-Create directory structure for Ansible
+=== Ansible Directory Structure
 
 ----
 mkdir -p $USER/Projects/mantoso/ansible/roles
 cd $USER/Projects/ansible
 ----
+
+=== Clone homebrew role
 
 I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might want to clone via https
 
@@ -50,7 +53,7 @@ I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might wa
 git clone git@github.com:mantoso/mantoso-role-homebrew.git
 ----
 
-Create the playbook
+=== Create the playbook
 
 ----
 cp roles/mantoso-role-homebrew/homebrew-playbook-example.yml homebrew-playbook.yml
@@ -62,7 +65,7 @@ Or if you are ok with the example playbook, create a symlink to it:
 ln -s $(pwd)/roles/mantoso-role-homebrew/homebrew-playbook-example.yml $(pwd)/homebrew-playbook.yml
 ----
 
-Run ansible-playbook
+=== Run ansible-playbook
 
 ----
 ansible-playbook --ask-become-pass homebrew-playbook.yml
