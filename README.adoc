@@ -25,7 +25,6 @@ Install {uri-homebrew}[Homebrew] via the CLI
 
 Install Ansible
 
-[source,bash]
 ----
 sudo easy_install pip
 sudo pip install ansible
@@ -33,7 +32,6 @@ sudo pip install ansible
 
 Create directory structure for Ansible
 
-[source,bash]
 ----
 mkdir -p $USER/Projects/mantoso/ansible/roles
 cd $USER/Projects/ansible
@@ -41,28 +39,24 @@ cd $USER/Projects/ansible
 
 I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might want to clone via https
 
-[source,bash]
 ----
 git clone git@github.com:mantoso/mantoso-role-homebrew.git
 ----
 
 Create the playbook
 
-[source,bash]
 ----
 cp roles/mantoso-role-homebrew/homebrew-playbook-example.yml homebrew-playbook.yml
 ----
 
 Or if you are ok with the example playbook, create a symlink to it:
 
-[source,bash]
 ----
 ln -s $(pwd)/roles/mantoso-role-homebrew/homebrew-playbook-example.yml $(pwd)/homebrew-playbook.yml
 ----
 
 Run ansible-playbook
 
-[source,bash]
 ----
 ansible-playbook --ask-become-pass homebrew-playbook.yml
 ----
@@ -71,7 +65,6 @@ ansible-playbook --ask-become-pass homebrew-playbook.yml
 
 I have {uri-setup-dotfiles}[a script] to symlink dotfiles that I store in iCloud so that my dotfiles are in sync across all my Macs.
 
-[source,bash]
 ----
 cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/dotfiles
 ./setup_dotfiles.sh
@@ -81,7 +74,6 @@ cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/dotfiles
 
 This {uri-my-zsh}[zsh configuration] is for my macOS workstation and therefore contains some macOS-specific code and commands.
 
-[source,bash]
 ----
 git clone git@github.com:tracphil/my-zsh.git ~/.my-zsh
 zsh ~/.my-zsh/bootstrap.sh
@@ -89,7 +81,6 @@ zsh ~/.my-zsh/bootstrap.sh
 
 If your default shell is not `zsh`, make it zsh and open a new terminal and plugins will automatically start installing. When opening the new terminal you will most likely be presented with the following:
 
-[source,bash]
 ----
 zsh compinit: insecure directories, run compaudit for list.
 Ignore insecure directories and continue [y] or abort compinit [n]? y
@@ -97,7 +88,6 @@ Ignore insecure directories and continue [y] or abort compinit [n]? y
 
 After the plugins are finished installing, fix the permissions.
 
-[source,bash]
 ----
 compaudit | xargs chmod g-w
 ----
@@ -122,6 +112,51 @@ So that {uri-powerlevel10k}[Powerlevel10] works in all its glory, go into Prefer
 
 menu:Preferences[Profiles > Default > Text > Font]
 
+== Python
+
+After executing the script below, the latest version of python source will be downloaded and compiled. This will take a few minutes.
+
+[source,bash]
+----
+#!/usr/bin/env bash
+
+if command -v pyenv; then
+    py_version=$(pyenv install --list | \grep -vE "\-|rc" | \grep " 3\.[678]" | tail -n 1 | awk '{$1=$1};1')
+
+    pyenv install "$py_version"
+    pyenv global "$py_version"
+    echo "Installed Python $py_version"
+else
+    echo "pyenv not installed"
+    echo "brew install pyenv pyenv-virtualenv"
+    exit 1
+fi
+----
+
+Install the default requirements plugin
+
+NOTE: This plugin is optional
+
+----
+git clone https://github.com/mantoso/pyenv-default-requirements.git $(pyenv root)/plugins/pyenv-default-requirements
+----
+
+Now create a VirtualEnv with latest Python version, I will call this one `mantoso`
+
+----
+pyenv virtualenv $py_version mantoso
+----
+
+Go to the directory you want to active your virtualenv in.
+
+----
+cd ~/Projects/mantoso
+pyenv local mantoso
+----
+
+This will create a file named `.python-version` with your virtualenv `mantoso` in it. Using my zsh config, you will automatically active the python virtualenv when you cd into the directory or child directory and automatically deactivated when you cd to the parent directory.
+
+image::pyenv.png[pyenv]
 
 == GnuPG (wip)
 
@@ -136,7 +171,6 @@ Setup git:
 
 WARNING: In the examples below, replace C14AB940 with your key id.
 
-[source,bash]
 ----
 $ git config --global gpg.program $(which gpg)
 $ git config --global user.signingkey C14AB940
@@ -145,7 +179,6 @@ $ git config --global commit.gpgsign true
 
 Test it:
 
-[source,bash]
 ----
 $ mkdir -p /tmp/test
 $ cd $_
