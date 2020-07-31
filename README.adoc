@@ -114,7 +114,7 @@ defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string ${HOME}/Lib
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 ----
 
-Open iterm and enjoy computing as it should be enjoyed.
+Open iterm and enjoy `zsh` as it should be enjoyed.
 
 image::iterm.png[iTerm2]
 
@@ -164,7 +164,7 @@ cd ~/Projects/mantoso
 pyenv local mantoso
 ----
 
-This will create a file named `.python-version` with your virtualenv `mantoso` in it. Using my zsh config, you will automatically active the python virtualenv when you cd into the directory or child directory and automatically deactivated when you cd to the parent directory.
+This will create a file named `.python-version` with your virtualenv `mantoso` in it. Using my zsh config, you will automatically activate the python virtualenv when you cd into the directory or child directory and automatically deactivated when you cd to the parent directory.
 
 image::pyenv.png[pyenv]
 
@@ -177,7 +177,7 @@ Setup {uri-gnupg}[GnuPG] (installed via {uri-mantoso-role-homebrew}[mantoso-role
 `pinentry-mac` connects `gpg-agent` to macOS Keychain via the brew-installed pinentry-mac program from GPGtools. This is the macOS _magic sauce_, allowing the gpg key's passphrase to be stored in the login keychain, enabling automatic key signing.
 ====
 
-Setup git:
+Setup git to sign commits
 
 WARNING: In the examples below, replace C14AB940 with your key id.
 
