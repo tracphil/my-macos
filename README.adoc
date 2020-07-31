@@ -1,0 +1,154 @@
+= macOS Setup
+:toc:
+:toc-placement: preamble
+// URI's
+:uri-homebrew: https://brew.sh
+:uri-mantoso-role-homebrew: https://github.com/mantoso/mantoso-role-homebrew
+:uri-setup-dotfiles: https://gist.github.com/tracphil/03de0b546e83372141aea36772ba844c
+:uri-my-zsh: https://github.com/tracphil/my-zsh
+:uri-powerlevel10k: https://github.com/romkatv/powerlevel10k
+:uri-gnupg: https://gnupg.org/
+== Frontmatter
+
+This is the general steps in order that I use to setup a new Mac
+
+== Homebrew
+
+Install {uri-homebrew}[Homebrew] via the CLI
+
+[source,bash]
+----
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+----
+
+== Ansible
+
+Install Ansible
+
+[source,bash]
+----
+sudo easy_install pip
+sudo pip install ansible
+----
+
+Create directory structure for Ansible
+
+[source,bash]
+----
+mkdir -p $USER/Projects/mantoso/ansible/roles
+cd $USER/Projects/ansible
+----
+
+I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might want to clone via https
+
+[source,bash]
+----
+git clone git@github.com:mantoso/mantoso-role-homebrew.git
+----
+
+Create the playbook
+
+[source,bash]
+----
+cp roles/mantoso-role-homebrew/homebrew-playbook-example.yml homebrew-playbook.yml
+----
+
+Or if you are ok with the example playbook, create a symlink to it:
+
+[source,bash]
+----
+ln -s $(pwd)/roles/mantoso-role-homebrew/homebrew-playbook-example.yml $(pwd)/homebrew-playbook.yml
+----
+
+Run ansible-playbook
+
+[source,bash]
+----
+ansible-playbook --ask-become-pass homebrew-playbook.yml
+----
+
+== Dotfiles
+
+I have {uri-setup-dotfiles}[a script] to symlink dotfiles that I store in iCloud so that my dotfiles are in sync across all my Macs.
+
+[source,bash]
+----
+cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/dotfiles
+./setup_dotfiles.sh
+----
+
+== ZSH
+
+This {uri-my-zsh}[zsh configuration] is for my macOS workstation and therefore contains some macOS-specific code and commands.
+
+[source,bash]
+----
+git clone git@github.com:tracphil/my-zsh.git ~/.my-zsh
+zsh ~/.my-zsh/bootstrap.sh
+----
+
+If your default shell is not `zsh`, make it zsh and open a new terminal and plugins will automatically start installing. When opening the new terminal you will most likely be presented with the following:
+
+[source,bash]
+----
+zsh compinit: insecure directories, run compaudit for list.
+Ignore insecure directories and continue [y] or abort compinit [n]? y
+----
+
+After the plugins are finished installing, fix the permissions.
+
+[source,bash]
+----
+compaudit | xargs chmod g-w
+----
+
+In case you want to have private setting excluded from public Git repos, just create a file `.private.zsh` in the home directory.
+
+== iTerm2
+
+I use iTerm (installed via {uri-mantoso-role-homebrew}[mantoso-role-homebrew]) and "sync" my settings via iCloud and have iTerm configured to load its configuration from a directory in iCloud Drive on my local Mac.
+
+[source,bash]
+----
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/iTerm2
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+----
+
+Open iterm and enjoy computing as it should be enjoyed.
+
+image::iterm.png[iTerm2]
+
+So that {uri-powerlevel10k}[Powerlevel10] works in all its glory, go into Preferences for iTerm and change the font to SauceCodePro Nerd Font, 11pt.
+
+menu:Preferences[Profiles > Default > Text > Font]
+
+
+== GnuPG (wip)
+
+Setup {uri-gnupg}[GnuPG] (installed via {uri-mantoso-role-homebrew}[mantoso-role-homebrew]) and `pinentry-mac`
+
+[NOTE]
+====
+`pinentry-mac` connects `gpg-agent` to macOS Keychain via the brew-installed pinentry-mac program from GPGtools. This is the macOS _magic sauce_, allowing the gpg key's passphrase to be stored in the login keychain, enabling automatic key signing.
+====
+
+Setup git:
+
+WARNING: In the examples below, replace C14AB940 with your key id.
+
+[source,bash]
+----
+$ git config --global gpg.program $(which gpg)
+$ git config --global user.signingkey C14AB940
+$ git config --global commit.gpgsign true
+----
+
+Test it:
+
+[source,bash]
+----
+$ mkdir -p /tmp/test
+$ cd $_
+$ git init
+$ git commit --allow-empty -m 'signsss'
+----
