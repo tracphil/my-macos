@@ -50,7 +50,7 @@ cd $USER/Projects/ansible
 I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might want to clone via https
 
 ----
-git clone git@github.com:mantoso/mantoso-role-homebrew.git $USER/Projects/mantoso/ansible/roles
+git clone git@github.com:mantoso/mantoso-role-homebrew.git $USER/Projects/ansible/roles
 ----
 
 === Create the playbook
