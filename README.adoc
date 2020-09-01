@@ -41,7 +41,7 @@ sudo pip install ansible
 === Ansible Directory Structure
 
 ----
-mkdir -p $USER/Projects/mantoso/ansible/roles
+mkdir -p $USER/Projects/ansible/roles
 cd $USER/Projects/ansible
 ----
 
