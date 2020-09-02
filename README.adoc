@@ -76,6 +76,7 @@ ansible-playbook --ask-become-pass homebrew-playbook.yml
 I have {uri-setup-dotfiles}[a script] to symlink dotfiles that I store in iCloud so that my dotfiles are in sync across all my Macs.
 
 ----
+mkdir -p ~/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/dotfiles
 cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/dotfiles
 ./setup_dotfiles.sh
 ----
