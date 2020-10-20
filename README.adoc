@@ -45,6 +45,19 @@ mkdir -p ~/Projects/ansible/roles
 cd $USER/Projects/ansible
 ----
 
+----
+cat > ansible.cfg <<EOF
+[defaults]
+inventory = localhost
+EOF
+----
+
+----
+cat > localhost <<EOF
+[localhost]
+127.0.0.1  ansible_connection=local
+----
+
 === Clone homebrew role
 
 I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might want to clone via https
