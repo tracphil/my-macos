@@ -61,10 +61,8 @@ EOF
 
 === Clone homebrew role
 
-I clone {uri-mantoso-role-homebrew}[mantoso-role-homebrew] via ssh, you might want to clone via https
-
 ----
-git clone git@github.com:mantoso/mantoso-role-homebrew.git ~/Projects/ansible/roles
+git clone https://github.com/mantoso/mantoso-role-homebrew.git ~/Projects/ansible/roles
 ----
 
 === Create the playbook
