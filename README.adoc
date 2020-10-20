@@ -34,8 +34,7 @@ Install {uri-homebrew}[Homebrew] via the CLI
 === Install Ansible
 
 ----
-sudo easy_install pip
-sudo pip install ansible
+brew install ansible
 ----
 
 === Ansible Directory Structure
