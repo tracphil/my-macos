@@ -61,19 +61,19 @@ EOF
 === Clone homebrew role
 
 ----
-git clone https://github.com/mantoso/mantoso-role-homebrew.git ~/Projects/ansible/roles
+git clone https://github.com/nocbot-project/nocbot-role-homebrew.git ~/Projects/ansible/roles
 ----
 
 === Create the playbook
 
 ----
-cp roles/mantoso-role-homebrew/homebrew-playbook-example.yml homebrew-playbook.yml
+cp roles/nocbot-role-homebrew/homebrew-playbook-example.yml homebrew-playbook.yml
 ----
 
-Or if you are ok with the example playbook, create a symlink to it:
+Or if you are ok with (you shouldn't be) the example playbook, create a symlink to it:
 
 ----
-ln -s $(pwd)/roles/mantoso-role-homebrew/homebrew-playbook-example.yml $(pwd)/homebrew-playbook.yml
+ln -s $(pwd)/roles/nocbot-role-homebrew/homebrew-playbook-example.yml $(pwd)/homebrew-playbook.yml
 ----
 
 === Run ansible-playbook
