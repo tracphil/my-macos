@@ -11,7 +11,7 @@ endif::[]
 :toclevels: 1
 // URI's
 :uri-homebrew: https://brew.sh
-:uri-mantoso-role-homebrew: https://github.com/mantoso/mantoso-role-homebrew
+:uri-nocbot-role-homebrew: https://github.com/nocbot/nocbot-role-homebrew
 :uri-setup-dotfiles: https://gist.github.com/tracphil/03de0b546e83372141aea36772ba844c
 :uri-my-zsh: https://github.com/tracphil/my-zsh
 :uri-powerlevel10k: https://github.com/romkatv/powerlevel10k
@@ -118,7 +118,7 @@ In case you want to have private setting excluded from public Git repos, just cr
 
 == iTerm2
 
-I use iTerm (installed via {uri-mantoso-role-homebrew}[mantoso-role-homebrew]) and "sync" my settings via iCloud and have iTerm configured to load its configuration from a directory in iCloud Drive on my local Mac.
+I use iTerm (installed via {uri-nocbot-role-homebrew}[nocbot-role-homebrew]) and "sync" my settings via iCloud and have iTerm configured to load its configuration from a directory in iCloud Drive on my local Mac.
 
 [source,bash]
 ----
