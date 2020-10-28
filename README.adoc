@@ -182,7 +182,7 @@ image::pyenv.png[pyenv]
 
 == GnuPG (wip)
 
-Setup {uri-gnupg}[GnuPG] (installed via {uri-mantoso-role-homebrew}[mantoso-role-homebrew]) and `pinentry-mac`
+Setup {uri-gnupg}[GnuPG] (installed via {uri-nocbot-role-homebrew}[nocbot-role-homebrew]) and `pinentry-mac`
 
 [NOTE]
 ====
