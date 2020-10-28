@@ -176,7 +176,7 @@ cd ~/Projects/ansible
 pyenv local ansible
 ----
 
-This will create a file named `.python-version` with your virtualenv `mantoso` in it. Using my zsh config, you will automatically activate the python virtualenv when you cd into the directory or child directory and automatically deactivated when you cd to the parent directory.
+This will create a file named `.python-version` with your virtualenv `ansible` in it. Using my zsh config, you will automatically activate the python virtualenv when you cd into the directory or child directory and automatically deactivated when you cd to the parent directory.
 
 image::pyenv.png[pyenv]
 
