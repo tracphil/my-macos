@@ -163,17 +163,17 @@ NOTE: This plugin is optional
 git clone https://github.com/mantoso/pyenv-default-requirements.git $(pyenv root)/plugins/pyenv-default-requirements
 ----
 
-Now create a VirtualEnv with latest Python version, I will call this one `mantoso`
+Now create a VirtualEnv with latest Python version (where `$py_version` is the output from the above script), I will call this one `ansible`.
 
 ----
-pyenv virtualenv $py_version mantoso
+pyenv virtualenv $py_version ansible
 ----
 
 Go to the directory you want to active your virtualenv in.
 
 ----
-cd ~/Projects/mantoso
-pyenv local mantoso
+cd ~/Projects/ansible
+pyenv local ansible
 ----
 
 This will create a file named `.python-version` with your virtualenv `mantoso` in it. Using my zsh config, you will automatically activate the python virtualenv when you cd into the directory or child directory and automatically deactivated when you cd to the parent directory.
