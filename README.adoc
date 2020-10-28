@@ -11,7 +11,7 @@ endif::[]
 :toclevels: 1
 // URI's
 :uri-homebrew: https://brew.sh
-:uri-nocbot-role-homebrew: https://github.com/nocbot/nocbot-role-homebrew
+:uri-nocbot-role-homebrew: https://github.com/nocbot-project/nocbot-role-homebrew
 :uri-setup-dotfiles: https://gist.github.com/tracphil/03de0b546e83372141aea36772ba844c
 :uri-my-zsh: https://github.com/tracphil/my-zsh
 :uri-powerlevel10k: https://github.com/romkatv/powerlevel10k
