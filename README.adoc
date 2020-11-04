@@ -61,7 +61,7 @@ EOF
 === Clone homebrew role
 
 ----
-git clone https://github.com/nocbot-project/nocbot-role-homebrew.git ~/Projects/ansible/roles
+git clone https://github.com/nocbot-project/nocbot-role-homebrew.git ~/Projects/ansible/roles/nocbot-role-homebrew
 ----
 
 === Create the playbook
