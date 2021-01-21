@@ -122,6 +122,8 @@ I use iTerm (installed via {uri-nocbot-role-homebrew}[nocbot-role-homebrew]) and
 
 [source,bash]
 ----
+cd ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/iTerm2
+find . -type f -name "*.icloud" -exec brctl download {} \;
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/Settings/iTerm2
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 ----
